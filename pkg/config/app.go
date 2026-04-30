@@ -8,7 +8,7 @@ import{
 var DB *gorm.DB
 
 func Connect(){
-	d, err := gorm.Open("mysql", "utkatsh:utkarsh@tcp/simplerest?charset=utf8&parseTime=True&loc=Local")
+	d, err := gorm.Open("mysql", "utkarsh:utkarsh@12@/simplerest?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		panic(err)
 	}
@@ -16,5 +16,5 @@ func Connect(){
 }
 
 func GetDB() *gorm.DB{
-	return DB
+	return db
 }

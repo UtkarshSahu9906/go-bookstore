@@ -12,5 +12,5 @@ func main(){
 	r:=mux.NewRouter()
 	routes.ResisterBookStoreRoutes(r)
 	http.Handle("/",r)
-	log.Fatal(http.ListenAndServe("localhost:9010",));
+	log.Fatal(http.ListenAndServe("localhost:9010",r));
 }

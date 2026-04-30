@@ -2,7 +2,7 @@ package models
 
 import{
 	"github.com/jinzhu/gorm"
-	"github.com/utkarshsahu9906/go-bookstore/config"
+	"github.com/utkarshsahu9906/go-bookstore/pkg/config"
 }
 
 var db *gorm.DB
@@ -11,6 +11,7 @@ type Book struct{
 	gorm.Model
 	Name string `gorm:"" json:"name"`
 	Author string `json:"author"`
+	Publication string `json:"publication"`
 }
 func init(){
 	config.Connect()
@@ -19,24 +20,24 @@ func init(){
 }
 func (b *Book) CreateBook() *Book{
 	db.NewRecord(b)
-	db.Creata(&b)
+	db.Create(&b)
 	return b
 }
 func GetAllBooks() []Book{
 	var Books []Book
-	db.find(&Books)
+	db.Find(&Books)
 	return Books
 }
 
-func GetBookById(Id int64) (*Book,*grom.DB){
+func GetBookById(Id int64) (*Book,*gorm.DB){
 	var getBook Book
-	db:=db.ehare("ID=?",Id).Find(&getBook)
-	return $getBook,db
+	db:=db.Where("ID=?",Id).Find(&getBook)
+	return &getBook,db
 
 }
 
 func DeleteBook(ID int64)Book{
 	var book Book
-	db.Whare("ID=?",ID).Delete(book)
+	db.Where("ID=?",ID).Delete(book)
 	return book
 }
